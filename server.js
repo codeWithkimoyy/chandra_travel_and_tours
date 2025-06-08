@@ -109,6 +109,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure express-session middleware with environment variables
+app.set('trust proxy', 1); // trust first proxy (Render needs this)
 app.use(session({
     secret: process.env.SESSION_SECRET || 'your_session_secret',
     resave: false,

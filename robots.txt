@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://chandra-travel-and-tours-cjf6.onrender.com/sitemap.xml

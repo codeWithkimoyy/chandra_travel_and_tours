@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHANDRA TRAVEL AND TOURS</title>
+    <title>Chandra Travel and Tours</title>
+    <meta name="description" content="Official website of Chandra Travel and Tours - providing travel services, documentation, and OFW employment support.">
+    <meta name="keywords" content="chandra travel, travel agency, OFW, visa, hotel booking">
+    <meta name="author" content="Chandra Travel and Tours">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png">
     <script src="js/common/animations.js"></script>
@@ -15,12 +18,17 @@
         <div class="header-container">
             <div class="header-content">
                 <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
-        <h1>CHANDRA TRAVEL AND TOURS</h1>
+                <h1>CHANDRA TRAVEL AND TOURS</h1>
             </div>
             <div class="header-auth" id="auth-buttons">
                 <!-- Auth buttons will be dynamically inserted here by auth.js -->
             </div>
         </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav id="main-nav"></nav>
     </header>
 
@@ -87,6 +95,31 @@
         <p>&copy; 2024 Chandra Travel and Tours Services. All rights reserved.</p>
     </footer>
     <script>
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mainNav = document.getElementById('main-nav');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mainNav.querySelector('ul').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            mainNav.querySelector('ul').classList.remove('active');
+        }
+    });
+
+    // Close mobile menu when clicking a nav link
+    mainNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenuBtn.classList.remove('active');
+            mainNav.querySelector('ul').classList.remove('active');
+        }
+    });
+
     // Contact form AJAX submission
     const contactForm = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');

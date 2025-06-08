@@ -14,6 +14,24 @@
     <script src="js/client/forms.js"></script>
 </head>
 <body>
+    <!-- Facebook SDK for Messenger Chat Plugin -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml            : true,
+                version          : 'v19.0'
+            });
+        };
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <header class="animate-fade-in">
         <div class="header-container">
             <div class="header-content">
@@ -209,5 +227,13 @@
     });
     </script>
     </main>
+
+    <!-- Facebook Messenger Chat Plugin -->
+    <div class="fb-customerchat"
+        page_id="101225089195070"
+        greeting_dialog_display="fade"
+        logged_in_greeting="Hi! How can I help you?"
+        logged_out_greeting="Hi! How can I help you?">
+    </div>
 </body>
 </html> 

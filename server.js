@@ -9,6 +9,7 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const rateLimit = require('express-rate-limit');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
 const app = express();
@@ -101,7 +102,7 @@ mongoose.connect(uri)
 
 // Middleware - Order is important!
 app.use(cors({
-    origin: 'http://localhost:3000',  // Allow requests from your frontend
+    origin: process.env.CLIENT_URL || 'https://chandra-travel-and-tours-cjf6.onrender.com', // Updated for Render deployment
     credentials: true  // Allow credentials (cookies) to be sent
 }));
 app.use(bodyParser.json());
@@ -118,7 +119,11 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000, // 24 hours
         sameSite: 'lax'
     },
-    name: 'sessionId'
+    name: 'sessionId',
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || "mongodb+srv://cutamorakim15:q5QwLo6fQJk1oXGk@chandratravelandtours.0pnl19g.mongodb.net/chandraTravelDB?retryWrites=true&w=majority&appName=ChandraTravelandTours",
+        ttl: 14 * 24 * 60 * 60 // 14 days
+    })
 }));
 
 // Initialize Passport and restore authentication state, if any, from the session.

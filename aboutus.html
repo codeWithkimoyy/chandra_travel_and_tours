@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Chandra Travel and Tours</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="js/common/auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
+                <h1>CHANDRA TRAVEL AND TOURS</h1>
+            </div>
+            <div class="header-auth" id="auth-buttons">
+                <!-- Auth buttons will be dynamically inserted here by auth.js -->
+            </div>
+        </div>
+        <nav id="main-nav"></nav>
+    </header>
+
+    <div id="auth-status" style="display: none;">
+        <!-- Auth status messages will be shown here -->
+    </div>
+
+    <section class="hero animate-slide-up about-hero">
+        <div class="hero-overlay"></div>
+        <h2>About Chandra Travel and Tours</h2>
+        <p class="welcome-message">Your trusted partner in travel and document processing since 2009</p>
+    </section>
+
+    <section id="about" class="animate-slide-up">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>Welcome to Chandra Travel and Tours! We are a team of passionate travel enthusiasts dedicated to providing you with unforgettable travel experiences. Whether you are looking for a relaxing beach getaway, an adventurous mountain trek, or a cultural immersion in a vibrant city, we have the perfect package for you.</p>
+                
+                <div class="mission-vision">
+                    <div class="mission">
+                        <h3>Our Mission</h3>
+                        <p>To make travel accessible, enjoyable, and stress-free for every Filipino traveler. We strive to provide comprehensive travel solutions and exceptional service that exceeds expectations.</p>
+                    </div>
+                    <div class="vision">
+                        <h3>Our Vision</h3>
+                        <p>To be the most trusted travel and document processing agency in the Philippines, known for our reliability, efficiency, and customer-centric approach.</p>
+                    </div>
+                </div>
+
+                <div class="values">
+                    <h3>Our Core Values</h3>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <div class="value-icon">🤝</div>
+                            <h4>Trust</h4>
+                            <p>Building lasting relationships through transparency and reliability</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">⭐</div>
+                            <h4>Excellence</h4>
+                            <p>Delivering exceptional service in everything we do</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">💡</div>
+                            <h4>Innovation</h4>
+                            <p>Continuously improving our services and processes</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon">❤️</div>
+                            <h4>Care</h4>
+                            <p>Treating every client like family</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chandra Travel and Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/common/auth.js"></script>
+    <script src="js/common/animations.js"></script>
+    <script src="js/client/forms.js"></script>
+    <script>
+    fetch('/api/auth/status').then(res => res.json()).then(data => {
+      let navHtml = '<ul>';
+      navHtml += '<li><a href="index.html"' + (window.location.pathname.endsWith('index.html') ? ' class="active"' : '') + '>Home</a></li>';
+      navHtml += '<li><a href="aboutus.html"' + (window.location.pathname.endsWith('aboutus.html') ? ' class="active"' : '') + '>About Us</a></li>';
+      navHtml += '<li><a href="services.html"' + (window.location.pathname.endsWith('services.html') ? ' class="active"' : '') + '>Services</a></li>';
+      navHtml += '<li><a href="contactus.html"' + (window.location.pathname.endsWith('contactus.html') ? ' class="active"' : '') + '>Contact Us</a></li>';
+      if (data.authenticated && data.userType === 'admin') {
+        navHtml += '<li><a href="admin-dashboard.html"' + (window.location.pathname === '/admin-dashboard.html' ? ' class="active"' : '') + '>Dashboard</a></li>';
+      }
+      if (data.authenticated && data.userType === 'client') {
+        navHtml += '<li><a href="my-requests.html"' + (window.location.pathname.endsWith('my-requests.html') ? ' class="active"' : '') + '>My Requests</a></li>';
+      }
+      navHtml += '</ul>';
+      document.getElementById('main-nav').innerHTML = navHtml;
+    });
+    </script>
+</body>
+</html> 

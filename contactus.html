@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Chandra Travel and Tours</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="js/common/auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
+                <h1>CHANDRA TRAVEL AND TOURS</h1>
+            </div>
+            <div class="header-auth" id="auth-buttons">
+                <!-- Auth buttons will be dynamically inserted here by auth.js -->
+            </div>
+        </div>
+        <nav id="main-nav"></nav>
+    </header>
+
+    <div id="auth-status" style="display: none;">
+        <!-- Auth status messages will be shown here -->
+    </div>
+
+    <section class="hero animate-slide-up contact-hero">
+        <div class="hero-overlay"></div>
+        <h2>Get in Touch</h2>
+        <p class="welcome-message">We're here to help make your travel dreams come true</p>
+    </section>
+
+    <section id="contact" class="animate-slide-up">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email Us</h3>
+                        <p>info@chandratravelandtours.com</p>
+                        <p>janely193.jc@gmail.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Call Us</h3>
+                        <p>+63 917 123 4567</p>
+                        <p>+63 951 119 1183</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Visit Us</h3>
+                        <p></p>
+                        <p>Open Monday to Saturday</p>
+                        <p>9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <div id="contactFormContainer">
+                    <form id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chandra Travel and Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/common/auth.js"></script>
+    <script src="js/common/animations.js"></script>
+    <script src="js/client/forms.js"></script>
+    <script>
+    fetch('/api/auth/status').then(res => res.json()).then(data => {
+      let navHtml = '<ul>';
+      navHtml += '<li><a href="index.html"' + (window.location.pathname.endsWith('index.html') ? ' class="active"' : '') + '>Home</a></li>';
+      navHtml += '<li><a href="aboutus.html"' + (window.location.pathname.endsWith('aboutus.html') ? ' class="active"' : '') + '>About Us</a></li>';
+      navHtml += '<li><a href="services.html"' + (window.location.pathname.endsWith('services.html') ? ' class="active"' : '') + '>Services</a></li>';
+      navHtml += '<li><a href="contactus.html"' + (window.location.pathname.endsWith('contactus.html') ? ' class="active"' : '') + '>Contact Us</a></li>';
+      if (data.authenticated && data.userType === 'admin') {
+        navHtml += '<li><a href="admin-dashboard.html"' + (window.location.pathname === '/admin-dashboard.html' ? ' class="active"' : '') + '>Dashboard</a></li>';
+      }
+      if (data.authenticated && data.userType === 'client') {
+        navHtml += '<li><a href="my-requests.html"' + (window.location.pathname.endsWith('my-requests.html') ? ' class="active"' : '') + '>My Requests</a></li>';
+      }
+      navHtml += '</ul>';
+      document.getElementById('main-nav').innerHTML = navHtml;
+    });
+    </script>
+</body>
+</html> 

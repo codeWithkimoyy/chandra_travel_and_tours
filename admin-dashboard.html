@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CHANDRA TRAVEL AND TOURS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
+                <h1>CHANDRA TRAVEL AND TOURS</h1>
+            </div>
+            <div class="header-auth" id="auth-buttons">
+                <!-- Auth buttons will be dynamically inserted here by auth.js -->
+            </div>
+        </div>
+        <nav id="main-nav"></nav>
+    </header>
+
+    <main class="dashboard-container admin-hero">
+        <div class="dashboard-header">
+            <div class="header-left">
+                <h2 class="dashboard-title">Dashboard</h2>
+                <p class="dashboard-subtitle">Manage and monitor all service requests</p>
+            </div>
+            <div class="dashboard-actions">
+                <button onclick="refreshDashboard()" class="action-button" id="refresh-button">
+                    <span class="material-icons">refresh</span>
+                    Refresh
+                </button>
+                <button onclick="exportData()" class="export-button" id="export-button">
+                    <span class="material-icons">download</span>
+                    Export Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <span class="material-icons">assignment</span>
+                <h3>Total Requests</h3>
+                <div class="value" id="total-requests">0</div>
+                <div class="trend" id="total-trend"></div>
+            </div>
+            <div class="stat-card">
+                <span class="material-icons">pending_actions</span>
+                <h3>Pending Requests</h3>
+                <div class="value" id="pending-requests">0</div>
+                <div class="trend" id="pending-trend"></div>
+            </div>
+            <div class="stat-card">
+                <span class="material-icons">today</span>
+                <h3>Completed Today</h3>
+                <div class="value" id="completed-today">0</div>
+                <div class="trend" id="completed-trend"></div>
+            </div>
+            <div class="stat-card">
+                <span class="material-icons">people</span>
+                <h3>Active Users</h3>
+                <div class="value" id="active-users">0</div>
+                <div class="trend" id="users-trend"></div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="dashboard-charts-row">
+            <div class="chart-card full-width">
+                <div class="chart-container">
+                    <canvas id="trendsChart" width="900" height="350"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="dashboard-filters">
+            <div class="filter-group">
+                <label for="status-filter">Status</label>
+                <select id="status-filter" onchange="filterRequests()">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="approved">Approved</option>
+                    <option value="cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="service-filter">Service Type</label>
+                <select id="service-filter" onchange="filterRequests()">
+                    <option value="all">All Services</option>
+                    <option value="psa">PSA Services</option>
+                    <option value="passport">Passport Services</option>
+                    <option value="visa">Visa Services</option>
+                    <option value="other">Other Services</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="date-filter">Date Range</label>
+                <div class="date-range">
+                    <input type="date" id="date-from" onchange="filterRequests()">
+                    <span>to</span>
+                    <input type="date" id="date-to" onchange="filterRequests()">
+                </div>
+            </div>
+            <div class="filter-group search-group">
+                <label for="search-filter">Search</label>
+                <input type="text" id="search-filter" placeholder="Search requests..." onkeyup="filterRequests()">
+            </div>
+        </div>
+
+        <!-- Requests Table -->
+        <div class="dashboard-content">
+            <div class="table-container">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Client Name</th>
+                            <th>Service Type</th>
+                            <th>Date Submitted</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requests-table-body">
+                        <!-- Requests will be loaded here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="no-requests-message" class="no-data-message" style="display: none;">
+                <span class="material-icons">inbox</span>
+                <p>No requests found</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Area -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Floating View Details Container -->
+    <div id="viewDetailsFloat" class="view-details-float">
+        <div class="view-details-content">
+            <span class="close-float-card" onclick="closeViewDetailsFloat()">&times;</span>
+            <h2 id="view-details-modal-title">Request Details</h2>
+            <div id="request-details-content"></div>
+            <div class="modal-footer" style="margin-top: 20px; text-align: right;">
+                <button class="action-button" onclick="printRequestDetails()">Print</button>
+                <button class="action-button" onclick="closeViewDetailsFloat()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Update Floating Container -->
+    <div id="statusUpdateModal" class="view-details-float">
+        <div class="view-details-content">
+            <span class="close-float-card" id="close-status-modal" onclick="closeStatusUpdateModal()">&times;</span>
+            <h2>Update Request Status</h2>
+            <div class="modal-body">
+                <p class="request-id-display">Request ID: <span id="update-request-id"></span></p>
+                <div class="form-group">
+                    <label for="new-status">New Status:</label>
+                    <select id="new-status" class="form-control">
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="approved">Approved</option>
+                        <option value="cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status-notes">Notes:</label>
+                    <textarea id="status-notes" class="form-control" rows="4" placeholder="Add any notes about this status update..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-status-update" onclick="closeStatusUpdateModal()" class="action-button">
+                    <span class="material-icons">close</span>
+                    Cancel
+                </button>
+                <button id="submit-status-update" class="action-button">
+                    <span class="material-icons">save</span>
+                    Update Status
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Stat Card Modal -->
+    <div id="statFloatCard" class="view-details-float">
+        <div class="stat-float-content">
+            <span class="close-float-card" onclick="closeStatFloatCard()">&times;</span>
+            <h2 id="statFloatTitle"></h2>
+            <div id="statFloatDetails"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chandra Travel and Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/common/auth.js"></script>
+    <script src="js/admin/admin-dashboard.js"></script>
+    <script>
+    // This script block is only for navigation and stat card click listener.
+    // All other functions (like viewRequestDetails, openStatusUpdateModal, deleteRequest, showError, showStatFloatCard, closeStatFloatCard, etc.)
+    // are defined and handled in js/admin/admin-dashboard.js.
+    
+    fetch('/api/auth/status').then(res => res.json()).then(data => {
+      let navHtml = '<ul>';
+      navHtml += '<li><a href="index.html">Home</a></li>';
+      navHtml += '<li><a href="aboutus.html">About Us</a></li>';
+      navHtml += '<li><a href="services.html">Services</a></li>';
+      navHtml += '<li><a href="contactus.html">Contact Us</a></li>';
+      if (data.authenticated && data.userType === 'admin') {
+        navHtml += '<li><a href="admin-dashboard.html" class="active">Dashboard</a></li>';
+      }
+      navHtml += '</ul>';
+      document.getElementById('main-nav').innerHTML = navHtml;
+    });
+
+    // Ensure stat card click listener correctly calls the function from js/admin/admin-dashboard.js
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('h3').textContent;
+            const value = this.querySelector('.value').textContent;
+            const detailsHtml = `<p><b>${title}</b>: <span style='font-size:1.5rem;color:#1976d2;'>${value}</span></p><p>More details about <b>${title}</b> will appear here.</p>`;
+            // Call the function defined in js/admin/admin-dashboard.js
+            if (typeof showStatFloatCard === 'function') {
+                showStatFloatCard(title, detailsHtml);
+            } else {
+                console.error('showStatFloatCard is not defined. Ensure js/admin/admin-dashboard.js is loaded correctly and defines this function.');
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

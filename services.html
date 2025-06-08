@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Chandra Travel and Tours</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="js/common/auth.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
+                <h1>CHANDRA TRAVEL AND TOURS</h1>
+            </div>
+            <div class="header-auth" id="auth-buttons"></div>
+        </div>
+        <nav id="main-nav"></nav>
+    </header>
+
+    <div id="auth-status" style="display: none;">
+        <!-- Auth status messages will be shown here -->
+    </div>
+
+    <section class="hero animate-slide-up services-hero">
+        <div class="hero-overlay"></div>
+        <h2>Our Services</h2>
+        <p class="welcome-message">Comprehensive travel and document processing solutions for all your needs</p>
+    </section>
+
+    <section id="services" class="animate-slide-up">
+        <div class="services-container">
+            <div class="services-intro">
+                <h2>Services Offered</h2>
+                <p>Choose from our wide range of services below. Click on any service to access its application form.</p>
+            </div>
+
+            <!-- Main container for all service sections -->
+            <div id="allServicesContainer">
+                <!-- DFA -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">🛂</div>
+                        <h3>Department of Foreign Affairs</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="passportBtn">Passport Appointment</button>
+                        <button class="service-btn" id="apostilleBtn">Apostille Appointment/Non Appearance</button>
+                    </div>
+                    <div id="passportFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>PASSPORT APPOINTMENT</strong><br>
+                            <span>Book your DFA passport appointment</span>
+                        </div>
+                        <form id="passportForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Sex: <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                                <label>Civil Status: <select name="civil_status" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Divorced</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Appointment Details</legend>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <input type="time" name="appointment_time" required></label>
+                                <label>Appointment Type: <select name="appointment_type" required><option value="">Select</option><option>New Passport</option><option>Renewal</option><option>Lost Passport</option><option>Damaged Passport</option><option>Correction of Entry</option></select></label>
+                                <label>Preferred Location: <input type="text" name="preferred_location" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <div id="apostilleFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>APOSTILLE APPLICATION</strong><br>
+                            <span>Authentication of public documents for international use</span>
+                        </div>
+                        <form id="apostilleForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename" required></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Document Details</legend>
+                                <label>Type of Document: <input type="text" name="document_type" required></label>
+                                <label>Issuing Office/Agency: <input type="text" name="issuing_office" required></label>
+                                <label>Date of Issue: <input type="date" name="date_of_issue" required></label>
+                                <label>Number of Copies to Apostille: <input type="number" name="copies" min="1" value="1" required></label>
+                            </fieldset>
+                            <fieldset><legend>Receiver Details</legend>
+                                <label>Receiver's Name: <input type="text" name="receiver_name" required></label>
+                                <label>Contact #: <input type="text" name="receiver_contact" required></label>
+                                <label>Complete Address: <input type="text" name="receiver_address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- PSA -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">📄</div>
+                        <h3>Philippine Statistics Authority</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="psaBirthBtn">Birth Certificate</button>
+                        <button class="service-btn" id="psaMarriageBtn">Marriage Certificate</button>
+                        <button class="service-btn" id="psaDeathBtn">Death Certificate</button>
+                        <button class="service-btn" id="cenomarBtn">CENOMAR</button>
+                    </div>
+                    <!-- PSA Birth Certificate Form -->
+                    <div id="psaBirthFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>PSA BIRTH CERTIFICATE APPLICATION</strong><br>
+                            <span>Facilitating your PSA birth certificate application</span>
+                        </div>
+                        <form id="psaBirthForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename" required></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Sex: <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Parents Information</legend>
+                                <label>Mother's Maiden Name: <input type="text" name="mother_maidenname" required></label>
+                                <label>Father's Name: <input type="text" name="father_name" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Request Details</legend>
+                                <label>Relationship to the owner of the document: <input type="text" name="relationship" required></label>
+                                <label>Purpose of Request: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- PSA Marriage Certificate Form -->
+                    <div id="psaMarriageFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>PSA MARRIAGE CERTIFICATE APPLICATION</strong><br>
+                            <span>Facilitating your PSA marriage certificate application</span>
+                        </div>
+                        <form id="psaMarriageForm" class="service-form">
+                            <fieldset><legend>Husband's Information</legend>
+                                <label>Last Name: <input type="text" name="husband_lastname" required></label>
+                                <label>First Name: <input type="text" name="husband_firstname" required></label>
+                                <label>Middle Name: <input type="text" name="husband_middlename" required></label>
+                            </fieldset>
+                            <fieldset><legend>Wife's Information</legend>
+                                <label>Maiden Name: <input type="text" name="wife_maidenname" required></label>
+                                <label>First Name: <input type="text" name="wife_firstname" required></label>
+                                <label>Middle Name: <input type="text" name="wife_middlename" required></label>
+                            </fieldset>
+                            <fieldset><legend>Marriage Details</legend>
+                                <label>Date of Marriage: <input type="date" name="date_of_marriage" required></label>
+                                <label>Place of Marriage: <input type="text" name="place_of_marriage" required></label>
+                            </fieldset>
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Requestor's Name: <input type="text" name="requestor_name" required></label>
+                                <label>Relationship to the owner of the document: <input type="text" name="relationship" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Request Details</legend>
+                                <label>Purpose of Request: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- PSA Death Certificate Form -->
+                    <div id="psaDeathFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>PSA DEATH CERTIFICATE APPLICATION</strong><br>
+                            <span>Facilitating your PSA death certificate application</span>
+                        </div>
+                        <form id="psaDeathForm" class="service-form">
+                            <fieldset><legend>Deceased Person's Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename" required></label>
+                                <label>Date of Death: <input type="date" name="date_of_death" required></label>
+                                <label>Place of Death: <input type="text" name="place_of_death" required></label>
+                            </fieldset>
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Requestor's Name: <input type="text" name="requestor_name" required></label>
+                                <label>Relationship to the owner of the document: <input type="text" name="relationship" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Request Details</legend>
+                                <label>Purpose of Request: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- PSA CENOMAR Form -->
+                    <div id="cenomarFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>CENOMAR APPLICATION</strong><br>
+                            <span>Certificate of No Marriage Record</span>
+                        </div>
+                        <form id="cenomarForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename" required></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Sex: <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>Zipcode: <input type="text" name="zipcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Request Details</legend>
+                                <label>Purpose of CENOMAR: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- POEA -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">🌏</div>
+                        <h3>POEA Assistance</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="eregBtn">E-Registration & PEOS Certificate</button>
+                        <button class="service-btn" id="oecBmBtn">OEC Balik Manggagawa Appointment</button>
+                        <button class="service-btn" id="oecExBtn">OEC Exemption (Same Employer)</button>
+                    </div>
+                    <!-- POEA E-Registration & PEOS Certificate Form -->
+                    <div id="eregFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>E-REGISTRATION / OEC / PEOS</strong><br>
+                            <span>Facilitating your POEA requirements</span>
+                        </div>
+                        <form id="eregForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                                <label>Nationality: <input type="text" name="nationality" required></label>
+                                <label>Religion: <input type="text" name="religion"></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Home Phone: <input type="tel" name="homephone"></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>City: <input type="text" name="city" required></label>
+                                <label>Province: <input type="text" name="province" required></label>
+                                <label>Postal Code: <input type="text" name="postalcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Application Details</legend>
+                                <label>Desired Service: <select name="desired_service" required>
+                                    <option value="">Select</option>
+                                    <option>E-Registration</option>
+                                    <option>OEC Appointment</option>
+                                    <option>PEOS</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_service"></label>
+                                <label>Previous OEC Number (if applicable): <input type="text" name="previous_oec"></label>
+                                <label>Destination Country: <input type="text" name="destination_country" required></label>
+                                <label>Employer Name (if OEC): <input type="text" name="employer_name"></label>
+                                <label>Job Position (if OEC): <input type="text" name="job_position"></label>
+                                <label>Preferred Appointment Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Appointment Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <fieldset><legend>Additional Information</legend>
+                                <label>Purpose of Application: <textarea name="purpose" required></textarea></label>
+                                <label>Special Requirements: <textarea name="special_requirements"></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- POEA OEC Balik Manggagawa Appointment Form -->
+                    <div id="oecBmFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>OEC Balik Manggagawa Appointment</strong><br>
+                            <span>Processing of Overseas Employment Certificate for returning workers</span>
+                        </div>
+                        <form id="oecBmForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                                <label>Nationality: <input type="text" name="nationality" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>City: <input type="text" name="city" required></label>
+                                <label>Province: <input type="text" name="province" required></label>
+                                <label>Postal Code: <input type="text" name="postalcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Employment Details</legend>
+                                <label>Employer Name: <input type="text" name="employer_name" required></label>
+                                <label>Job Position: <input type="text" name="job_position" required></label>
+                                <label>Employment Start Date: <input type="date" name="employment_start" required></label>
+                                <label>Employment End Date: <input type="date" name="employment_end"></label>
+                                <label>Previous OEC Number: <input type="text" name="previous_oec" required></label>
+                                <label>Destination Country: <input type="text" name="destination_country" required></label>
+                            </fieldset>
+                            <fieldset><legend>Travel Details</legend>
+                                <label>Flight Date: <input type="date" name="flight_date" required></label>
+                                <label>Flight Time: <input type="time" name="flight_time"></label>
+                                <label>Airline: <input type="text" name="airline"></label>
+                                <label>Flight Number: <input type="text" name="flight_number"></label>
+                            </fieldset>
+                            <fieldset><legend>Appointment Details</legend>
+                                <label>Preferred Appointment Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Appointment Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <fieldset><legend>Additional Information</legend>
+                                <label>Special Requirements: <textarea name="special_requirements"></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- POEA OEC Exemption (Same Employer) Form -->
+                    <div id="oecExFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>OEC Exemption (Same Employer)</strong><br>
+                            <span>For returning workers with the same employer, eligible for OEC exemption</span>
+                        </div>
+                        <form id="oecExForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                                <label>Nationality: <input type="text" name="nationality" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                                <label>City: <input type="text" name="city" required></label>
+                                <label>Province: <input type="text" name="province" required></label>
+                                <label>Postal Code: <input type="text" name="postalcode" required></label>
+                            </fieldset>
+                            <fieldset><legend>Employment Details</legend>
+                                <label>Employer Name: <input type="text" name="employer_name" required></label>
+                                <label>Job Position: <input type="text" name="job_position" required></label>
+                                <label>Previous OEC Number: <input type="text" name="previous_oec" required></label>
+                                <label>Destination Country: <input type="text" name="destination_country" required></label>
+                            </fieldset>
+                            <fieldset><legend>Travel Details</legend>
+                                <label>Flight Date: <input type="date" name="flight_date" required></label>
+                                <label>Flight Time: <input type="time" name="flight_time"></label>
+                                <label>Airline: <input type="text" name="airline"></label>
+                                <label>Flight Number: <input type="text" name="flight_number"></label>
+                            </fieldset>
+                            <fieldset><legend>Additional Information</legend>
+                                <label>Special Requirements: <textarea name="special_requirements"></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Quarantine -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">🏥</div>
+                        <h3>Bureau of Quarantine</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="quarantineCertBtn">Certificate Services</button>
+                        <button class="service-btn" id="quarantineVaccBtn">Vaccination Services</button>
+                    </div>
+                    <!-- Quarantine Certificate Services Form -->
+                    <div id="quarantineCertFormContainer" class="hidden" style="margin-top:16px;">
+                        <div style="background:#fffbe6; border:1px solid #ffd700; padding:12px; border-radius:6px; margin-bottom:16px;">
+                            <strong>BUREAU OF QUARANTINE CERTIFICATE SERVICES</strong><br>
+                            <span>Obtain necessary health certificates for travel.</span>
+                        </div>
+                        <form id="quarantineCertForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                                <label>Nationality: <input type="text" name="nationality" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Application Details</legend>
+                                <label>Type of Certificate: <select name="certificate_type" required>
+                                    <option value="">Select</option>
+                                    <option>Medical Certificate</option>
+                                    <option>Yellow Fever Vaccination Certificate</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_certificate"></label>
+                                <label>Purpose of Application: <textarea name="purpose" required></textarea></label>
+                                <label>Country of Destination: <input type="text" name="destination_country" required></label>
+                                <label>Preferred Appointment Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Appointment Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <fieldset><legend>Additional Information</legend>
+                                <label>Special Requirements: <textarea name="special_requirements"></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- Quarantine Vaccination Services Form -->
+                    <div id="quarantineVaccFormContainer" class="hidden" style="margin-top:16px;">
+                        <div style="background:#fffbe6; border:1px solid #ffd700; padding:12px; border-radius:6px; margin-bottom:16px;">
+                            <strong>BUREAU OF QUARANTINE VACCINATION SERVICES</strong><br>
+                            <span>Get vaccinated for international travel requirements.</span>
+                        </div>
+                        <form id="quarantineVaccForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                                <label>Nationality: <input type="text" name="nationality" required></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Vaccination Details</legend>
+                                <label>Type of Vaccination: <select name="vaccination_type" required>
+                                    <option value="">Select</option>
+                                    <option>Yellow Fever</option>
+                                    <option>Meningococcal</option>
+                                    <option>Polio</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_vaccination"></label>
+                                <label>Purpose of Travel: <textarea name="purpose" required></textarea></label>
+                                <label>Country of Destination: <input type="text" name="destination_country" required></label>
+                                <label>Preferred Appointment Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Appointment Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <fieldset><legend>Additional Information</legend>
+                                <label>Special Requirements: <textarea name="special_requirements"></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- MARINA -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">🚢</div>
+                        <h3>MARINA Online Appointment</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="marinaSrbBtn">SRB Appointment</button>
+                        <button class="service-btn" id="marinaSidBtn">SID Appointment</button>
+                    </div>
+                    <!-- MARINA SRB Appointment Form -->
+                    <div id="marinaSrbFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>MARINA SRB APPOINTMENT</strong><br>
+                            <span>Schedule your Seafarer's Record Book (SRB) appointment</span>
+                        </div>
+                        <form id="marinaSrbForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Sex: <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Appointment Details</legend>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <input type="time" name="appointment_time" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- MARINA SID Appointment Form -->
+                    <div id="marinaSidFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>MARINA SID APPOINTMENT</strong><br>
+                            <span>Schedule your Seafarer's Identification Document (SID) appointment</span>
+                        </div>
+                        <form id="marinaSidForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Sex: <select name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Appointment Details</legend>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <input type="time" name="appointment_time" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Travel and Tours -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">🌍</div>
+                        <h3>Travel and Tours</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="airlineTicketingBtn">Airline Ticketing (Domestic / International)</button>
+                        <button class="service-btn" id="tourBtn">Tour Package</button>
+                        <button class="service-btn" id="bookingBtn">Hotel Reservation</button>
+                        <button class="service-btn" id="ferryBtn">Ferry and Bus Booking</button>
+                        <button class="service-btn" id="insuranceBtn">Travel Insurance</button>
+                        <button class="service-btn" id="visaBtn">VISA Assistance</button>
+                    </div>
+                    <!-- Airline Ticketing Form -->
+                    <div id="airlineTicketingFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>AIRLINE TICKETING</strong><br>
+                            <span>Book your domestic or international flights</span>
+                        </div>
+                        <form id="airlineTicketingForm" class="service-form">
+                            <fieldset><legend>Passenger Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Flight Details</legend>
+                                <label>Departure City: <input type="text" name="departure_city" required></label>
+                                <label>Arrival City: <input type="text" name="arrival_city" required></label>
+                                <label>Departure Date: <input type="date" name="departure_date" required></label>
+                                <label>Return Date: <input type="date" name="return_date"></label>
+                                <label>Preferred Airline: <input type="text" name="preferred_airline"></label>
+                            </fieldset>
+                            <button type="submit">Submit Booking</button>
+                        </form>
+                    </div>
+                    <!-- Tour Package Form -->
+                    <div id="tourFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>TOUR PACKAGE</strong><br>
+                            <span>Explore our exciting tour packages</span>
+                        </div>
+                        <form id="tourForm" class="service-form">
+                            <fieldset><legend>Tourist Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Tour Details</legend>
+                                <label>Tour Package: <select name="tour_package" required>
+                                    <option value="">Select</option>
+                                    <option>Beach Getaway</option>
+                                    <option>City Tour</option>
+                                    <option>Adventure Package</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_tour"></label>
+                                <label>Number of Travelers: <input type="number" name="travelers" min="1" required></label>
+                                <label>Preferred Date: <input type="date" name="preferred_date" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Booking</button>
+                        </form>
+                    </div>
+                    <!-- Hotel Reservation Form -->
+                    <div id="bookingFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>HOTEL RESERVATION</strong><br>
+                            <span>Book your stay with us</span>
+                        </div>
+                        <form id="bookingForm" class="service-form">
+                            <fieldset><legend>Guest Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Reservation Details</legend>
+                                <label>Check-in Date: <input type="date" name="checkin_date" required></label>
+                                <label>Check-out Date: <input type="date" name="checkout_date" required></label>
+                                <label>Number of Guests: <input type="number" name="guests" min="1" required></label>
+                                <label>Room Type: <select name="room_type" required>
+                                    <option value="">Select</option>
+                                    <option>Standard</option>
+                                    <option>Deluxe</option>
+                                    <option>Suite</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_room"></label>
+                            </fieldset>
+                            <button type="submit">Submit Reservation</button>
+                        </form>
+                    </div>
+                    <!-- Ferry and Bus Booking Form -->
+                    <div id="ferryFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>FERRY AND BUS BOOKING</strong><br>
+                            <span>Book your ferry or bus tickets</span>
+                        </div>
+                        <form id="ferryForm" class="service-form">
+                            <fieldset><legend>Passenger Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Booking Details</legend>
+                                <label>Departure City: <input type="text" name="departure_city" required></label>
+                                <label>Arrival City: <input type="text" name="arrival_city" required></label>
+                                <label>Departure Date: <input type="date" name="departure_date" required></label>
+                                <label>Return Date: <input type="date" name="return_date"></label>
+                                <label>Preferred Service: <select name="preferred_service" required>
+                                    <option value="">Select</option>
+                                    <option>Ferry</option>
+                                    <option>Bus</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_service"></label>
+                            </fieldset>
+                            <button type="submit">Submit Booking</button>
+                        </form>
+                    </div>
+                    <!-- Travel Insurance Form -->
+                    <div id="insuranceFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>TRAVEL INSURANCE</strong><br>
+                            <span>Secure your travel with our insurance plans</span>
+                        </div>
+                        <form id="insuranceForm" class="service-form">
+                            <fieldset><legend>Insured Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Insurance Details</legend>
+                                <label>Insurance Plan: <select name="insurance_plan" required>
+                                    <option value="">Select</option>
+                                    <option>Basic</option>
+                                    <option>Premium</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_plan"></label>
+                                <label>Coverage Period: <input type="date" name="coverage_start" required> to <input type="date" name="coverage_end" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- VISA Assistance Form -->
+                    <div id="visaFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>VISA ASSISTANCE</strong><br>
+                            <span>Get help with your visa application</span>
+                        </div>
+                        <form id="visaForm" class="service-form">
+                            <fieldset><legend>Applicant Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Visa Details</legend>
+                                <label>Destination Country: <input type="text" name="destination_country" required></label>
+                                <label>Purpose of Travel: <textarea name="purpose" required></textarea></label>
+                                <label>Travel Date: <input type="date" name="travel_date" required></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Other Services -->
+                <div class="service-category">
+                    <div class="category-header">
+                        <div class="category-icon">⭐</div>
+                        <h3>Other Services</h3>
+                    </div>
+                    <div class="service-buttons">
+                        <button class="service-btn" id="nbiBtn">NBI Appointment / Non Appearance</button>
+                        <button class="service-btn" id="policeBtn">Police Clearance Appointment</button>
+                        <button class="service-btn" id="embassyBtn">Embassy Stamping and Translation</button>
+                        <button class="service-btn" id="cavCanaBtn">CAV and CANA Assistance</button>
+                        <button class="service-btn" id="ltoBtn">LTO Certificate</button>
+                        <button class="service-btn" id="votersBtn">VOTER'S Certificate from Comelec Main</button>
+                        <button class="service-btn" id="cfoBtn">CFO Online Appointment</button>
+                        <button class="service-btn" id="loadBillsBtn">Load Available and Bills Payment Here</button>
+                    </div>
+                    <!-- NBI Appointment Form -->
+                    <div id="nbiFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>NBI CLEARANCE APPOINTMENT</strong><br>
+                            <span>Schedule your NBI clearance appointment or request non-appearance service</span>
+                        </div>
+                        <form id="nbiForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Service Details</legend>
+                                <label>Service Type: <select name="service_type" required>
+                                    <option value="">Select</option>
+                                    <option>Appointment</option>
+                                    <option>Non-Appearance</option>
+                                </select></label>
+                                <label>Purpose: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- Police Clearance Form -->
+                    <div id="policeFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>POLICE CLEARANCE APPOINTMENT</strong><br>
+                            <span>Schedule your police clearance appointment</span>
+                        </div>
+                        <form id="policeForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Place of Birth: <input type="text" name="birthplace" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Service Details</legend>
+                                <label>Purpose: <input type="text" name="purpose" required></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- Embassy Stamping and Translation Form -->
+                    <div id="embassyFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>EMBASSY STAMPING AND TRANSLATION</strong><br>
+                            <span>Get your documents stamped and translated</span>
+                        </div>
+                        <form id="embassyForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Document Details</legend>
+                                <label>Type of Document: <select name="document_type" required>
+                                    <option value="">Select</option>
+                                    <option>Birth Certificate</option>
+                                    <option>Marriage Certificate</option>
+                                    <option>Death Certificate</option>
+                                    <option>Diploma</option>
+                                    <option>Transcript of Records</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_document"></label>
+                                <label>Number of Copies: <input type="number" name="copies" min="1" value="1" required></label>
+                                <label>Target Embassy: <input type="text" name="embassy" required></label>
+                                <label>Purpose: <textarea name="purpose" required></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- CAV and CANA Assistance Form -->
+                    <div id="cavCanaFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>CAV AND CANA ASSISTANCE</strong><br>
+                            <span>Get help with your CAV and CANA applications</span>
+                        </div>
+                        <form id="cavCanaForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Application Details</legend>
+                                <label>Type of Application: <select name="application_type" required>
+                                    <option value="">Select</option>
+                                    <option>CAV</option>
+                                    <option>CANA</option>
+                                </select></label>
+                                <label>School/University: <input type="text" name="school" required></label>
+                                <label>Course/Degree: <input type="text" name="course" required></label>
+                                <label>Year Graduated: <input type="number" name="year_graduated" required></label>
+                                <label>Purpose: <textarea name="purpose" required></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- LTO Certificate Form -->
+                    <div id="ltoFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>LTO CERTIFICATE</strong><br>
+                            <span>Obtain your LTO certificate</span>
+                        </div>
+                        <form id="ltoForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Certificate Details</legend>
+                                <label>Type of Certificate: <select name="certificate_type" required>
+                                    <option value="">Select</option>
+                                    <option>No Record</option>
+                                    <option>No Pending Case</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_certificate"></label>
+                                <label>Purpose: <textarea name="purpose" required></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- VOTER'S Certificate Form -->
+                    <div id="votersFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>VOTER'S CERTIFICATE</strong><br>
+                            <span>Obtain your voter's certificate from Comelec Main</span>
+                        </div>
+                        <form id="votersForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Voter Details</legend>
+                                <label>Voter's ID Number: <input type="text" name="voter_id"></label>
+                                <label>Precinct Number: <input type="text" name="precinct_number"></label>
+                                <label>Purpose: <textarea name="purpose" required></textarea></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- CFO Online Appointment Form -->
+                    <div id="cfoFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>CFO ONLINE APPOINTMENT</strong><br>
+                            <span>Schedule your CFO appointment</span>
+                        </div>
+                        <form id="cfoForm" class="service-form">
+                            <fieldset><legend>Personal Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Date of Birth: <input type="date" name="dob" required></label>
+                                <label>Gender: <select name="gender" required><option value="">Select</option><option>Male</option><option>Female</option></select></label>
+                                <label>Civil Status: <select name="civilstatus" required><option value="">Select</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option></select></label>
+                            </fieldset>
+                            <fieldset><legend>Contact Information</legend>
+                                <label>Email Address: <input type="email" name="email" required></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                                <label>Complete Address: <input type="text" name="address" required></label>
+                            </fieldset>
+                            <fieldset><legend>Appointment Details</legend>
+                                <label>Type of Seminar: <select name="seminar_type" required>
+                                    <option value="">Select</option>
+                                    <option>PDOS</option>
+                                    <option>PEOS</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_seminar"></label>
+                                <label>Preferred Date: <input type="date" name="appointment_date" required></label>
+                                <label>Preferred Time: <select name="appointment_time" required>
+                                    <option value="">Select</option>
+                                    <option>Morning (9AM-12PM)</option>
+                                    <option>Afternoon (1PM-4PM)</option>
+                                </select></label>
+                            </fieldset>
+                            <button type="submit">Submit Application</button>
+                        </form>
+                    </div>
+                    <!-- Load Available and Bills Payment Form -->
+                    <div id="loadBillsFormContainer" class="hidden" style="margin-top:16px;">
+                        <div class="important-notice">
+                            <strong>LOAD AVAILABLE AND BILLS PAYMENT</strong><br>
+                            <span>Pay your bills and load your phone</span>
+                        </div>
+                        <form id="loadBillsForm" class="service-form">
+                            <fieldset><legend>Customer Information</legend>
+                                <label>Last Name: <input type="text" name="lastname" required></label>
+                                <label>First Name: <input type="text" name="firstname" required></label>
+                                <label>Middle Name: <input type="text" name="middlename"></label>
+                                <label>Mobile Number: <input type="tel" name="mobile" required></label>
+                            </fieldset>
+                            <fieldset><legend>Payment Details</legend>
+                                <label>Service Type: <select name="service_type" required>
+                                    <option value="">Select</option>
+                                    <option>Load</option>
+                                    <option>Bills Payment</option>
+                                </select></label>
+                                <label>Amount: <input type="number" name="amount" min="1" required></label>
+                                <label>Account Number (for bills): <input type="text" name="account_number"></label>
+                                <label>Provider: <select name="provider" required>
+                                    <option value="">Select</option>
+                                    <option>Smart</option>
+                                    <option>Globe</option>
+                                    <option>TM</option>
+                                    <option>Sun</option>
+                                    <option>DITO</option>
+                                    <option>Meralco</option>
+                                    <option>Maynilad</option>
+                                    <option>Manila Water</option>
+                                    <option>Other</option>
+                                </select></label>
+                                <label>If Other, please specify: <input type="text" name="other_provider"></label>
+                            </fieldset>
+                            <button type="submit">Submit Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="login-message-container" style="text-align: center; margin-top: 20px; color: red; font-weight: bold;"></div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Chandra Travel and Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/common/animations.js"></script>
+    <script src="js/client/forms.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize any page-specific functionality here
+        });
+
+        fetch('/api/auth/status').then(res => res.json()).then(data => {
+            let navHtml = '<ul>';
+            navHtml += '<li><a href="index.html"' + (window.location.pathname.endsWith('index.html') ? ' class="active"' : '') + '>Home</a></li>';
+            navHtml += '<li><a href="aboutus.html"' + (window.location.pathname.endsWith('aboutus.html') ? ' class="active"' : '') + '>About Us</a></li>';
+            navHtml += '<li><a href="services.html"' + (window.location.pathname.endsWith('services.html') ? ' class="active"' : '') + '>Services</a></li>';
+            navHtml += '<li><a href="contactus.html"' + (window.location.pathname.endsWith('contactus.html') ? ' class="active"' : '') + '>Contact Us</a></li>';
+            if (data.authenticated && data.userType === 'admin') {
+                navHtml += '<li><a href="admin-dashboard.html"' + (window.location.pathname.endsWith('admin-dashboard.html') ? ' class="active"' : '') + '>Dashboard</a></li>';
+            }
+            if (data.authenticated && data.userType === 'client') {
+                navHtml += '<li><a href="my-requests.html"' + (window.location.pathname.endsWith('my-requests.html') ? ' class="active"' : '') + '>My Requests</a></li>';
+            }
+            navHtml += '</ul>';
+            document.getElementById('main-nav').innerHTML = navHtml;
+        });
+    </script>
+</body>
+</html> 

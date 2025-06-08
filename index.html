@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHANDRA TRAVEL AND TOURS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="js/common/animations.js"></script>
+    <script src="js/common/auth.js"></script>
+    <script src="js/client/forms.js"></script>
+</head>
+<body>
+    <header class="animate-fade-in">
+        <div class="header-container">
+            <div class="header-content">
+                <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
+        <h1>CHANDRA TRAVEL AND TOURS</h1>
+            </div>
+            <div class="header-auth" id="auth-buttons">
+                <!-- Auth buttons will be dynamically inserted here by auth.js -->
+            </div>
+        </div>
+        <nav id="main-nav"></nav>
+    </header>
+
+    <div id="auth-status" style="display: none;">
+        <!-- Auth status messages will be shown here -->
+    </div>
+
+    <main>
+    <section id="home" class="hero animate-slide-up home-hero">
+        <div class="hero-overlay"></div>
+        <h2>Welcome to Your Journey of a Lifetime!</h2>
+        <p class="welcome-message">Experience seamless travel services with Chandra Travel and Tours - your trusted partner in making dreams come true.</p>
+        
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">Happy Travelers</span>
+                </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Years Experience</span>
+                  </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Destinations</span>
+                </div>
+                  </div>
+
+        <div class="welcome-features">
+            <div class="feature">
+                <div class="feature-icon">✈️</div>
+                <h3>Travel Services</h3>
+                <p>Airline tickets, hotel bookings, and exciting tour packages tailored just for you.</p>
+                </div>
+            <div class="feature">
+                <div class="feature-icon">📄</div>
+                <h3>Document Processing</h3>
+                <p>Expert assistance with passports, visas, and all your travel documentation needs.</p>
+                </div>
+            <div class="feature">
+                <div class="feature-icon">🌏</div>
+                <h3>Overseas Employment</h3>
+                <p>Complete support for OFWs - from OEC to employment documents.</p>
+                </div>
+                </div>
+
+        <div class="testimonials">
+            <h3>What Our Clients Say</h3>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <p class="quote">"Excellent service! They made my visa application process so smooth and stress-free."</p>
+                    <p class="author">- Maria Santos</p>
+                </div>
+                <div class="testimonial">
+                    <p class="quote">"Very professional and reliable. They helped me with all my OFW requirements."</p>
+                    <p class="author">- John Dela Cruz</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="services.html" class="cta-button">Explore Our Services</a>
+    </section>
+    <footer class="animate-fade-in">
+        <p>&copy; 2024 Chandra Travel and Tours Services. All rights reserved.</p>
+    </footer>
+    <script>
+    // Contact form AJAX submission
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    // Form visibility toggling
+    const resetForms = () => {
+      // Hide all forms
+      document.querySelectorAll('[id$="FormContainer"]').forEach(form => {
+        form.style.display = 'none';
+      });
+      // Reset all buttons
+      document.querySelectorAll('.service-btn').forEach(btn => {
+        btn.style.backgroundColor = '';
+        btn.style.color = '';
+      });
+    };
+
+    // Add click event listeners for all service buttons
+    const serviceButtons = {
+      // Existing buttons
+      'nbiBtn': 'nbiFormContainer',
+      'comelecBtn': 'comelecFormContainer',
+      'cfoBtn': 'cfoFormContainer',
+      'visaBtn': 'visaFormContainer',
+      'insuranceBtn': 'insuranceFormContainer',
+      // New buttons added previously
+      'policeBtn': 'policeFormContainer',
+      'embassyBtn': 'embassyFormContainer',
+      'cavBtn': 'cavFormContainer',
+      'ltoBtn': 'ltoFormContainer',
+      'loadBtn': 'loadFormContainer',
+      // Newly added buttons
+      'apostilleBtn': 'apostilleBtnFormContainer',
+      'oecBmBtn': 'oecBmBtnFormContainer',
+      'oecExemptionBtn': 'oecExemptionBtnFormContainer',
+      // Newly added Travel and Tours buttons
+      'airlineBtn': 'airlineFormContainer',
+      'tourBtn': 'tourFormContainer',
+      'hotelBtn': 'hotelFormContainer',
+      'ferryBtn': 'ferryFormContainer',
+      // Newly added DFA buttons
+      'passportBtn': 'passportBtnFormContainer',
+      // Newly added PSA buttons
+      'psaBirthBtn': 'psaBirthBtnFormContainer',
+      'psaMarriageBtn': 'psaMarriageBtnFormContainer',
+      'psaDeathBtn': 'psaDeathBtnFormContainer',
+      'cenomarBtn': 'cenomarFormContainer',
+      // Newly added POEA buttons
+      'eregBtn': 'eregBtnFormContainer',
+      // Newly added Bureau of Quarantine buttons
+      'quarantineCertBtn': 'quarantineCertBtnFormContainer',
+      'quarantineVaccBtn': 'quarantineVaccBtnFormContainer',
+      // Newly added MARINA buttons
+      'marinaSrbBtn': 'marinaSrbBtnFormContainer',
+      'marinaSidBtn': 'marinaSidBtnFormContainer'
+    };
+
+    Object.entries(serviceButtons).forEach(([btnId, formId]) => {
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        btn.addEventListener('click', () => {
+          resetForms();
+          const form = document.getElementById(formId);
+          if (form) {
+            form.style.display = 'block';
+            btn.style.backgroundColor = '#ffd700';
+            btn.style.color = '#000';
+          }
+        });
+      }
+    });
+
+    fetch('/api/auth/status').then(res => res.json()).then(data => {
+      let navHtml = '<ul>';
+      navHtml += '<li><a href="index.html"' + (window.location.pathname.endsWith('index.html') ? ' class="active"' : '') + '>Home</a></li>';
+      navHtml += '<li><a href="aboutus.html"' + (window.location.pathname.endsWith('aboutus.html') ? ' class="active"' : '') + '>About Us</a></li>';
+      navHtml += '<li><a href="services.html"' + (window.location.pathname.endsWith('services.html') ? ' class="active"' : '') + '>Services</a></li>';
+      navHtml += '<li><a href="contactus.html"' + (window.location.pathname.endsWith('contactus.html') ? ' class="active"' : '') + '>Contact Us</a></li>';
+      if (data.authenticated && data.userType === 'admin') {
+        navHtml += '<li><a href="admin-dashboard.html"' + (window.location.pathname === '/admin-dashboard.html' ? ' class="active"' : '') + '>Dashboard</a></li>';
+      }
+      if (data.authenticated && data.userType === 'client') {
+        navHtml += '<li><a href="my-requests.html"' + (window.location.pathname.endsWith('my-requests.html') ? ' class="active"' : '') + '>My Requests</a></li>';
+      }
+      navHtml += '</ul>';
+      document.getElementById('main-nav').innerHTML = navHtml;
+    });
+    </script>
+    </main>
+</body>
+</html> 

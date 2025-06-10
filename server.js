@@ -19,7 +19,7 @@ const PORT = 3000;
 const adminEmails = (process.env.ADMIN_EMAILS || 'janely193.jc@gmail.com,cutamorakim15@gmail.com').split(',');
 
 // MongoDB Connection URI from environment
-const uri = process.env.MONGODB_URI || "mongodb+srv://cutamorakim15:q5QwLo6fQJk1oXGk@chandratravelandtours.0pnl19g.mongodb.net/chandraTravelDB?retryWrites=true&w=majority&appName=ChandraTravelandTours";
+const uri = process.env.MONGODB_URI;
 
 // Configure different rate limiters for different types of routes
 //const generalLimiter = rateLimit({
@@ -122,7 +122,7 @@ app.use(session({
     },
     name: 'sessionId',
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI || "mongodb+srv://cutamorakim15:q5QwLo6fQJk1oXGk@chandratravelandtours.0pnl19g.mongodb.net/chandraTravelDB?retryWrites=true&w=majority&appName=ChandraTravelandTours",
+        mongoUrl: process.env.MONGODB_URI,
         ttl: 14 * 24 * 60 * 60 // 14 days
     })
 }));

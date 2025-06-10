@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
+    <header class="animate-fade-in">
         <div class="header-container">
             <div class="header-content">
                 <img src="logo.png" alt="Chandra Travel and Tours Logo" class="header-logo">
@@ -20,6 +20,11 @@
                 <!-- Auth buttons will be dynamically inserted here by auth.js -->
             </div>
         </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <nav id="main-nav"></nav>
     </header>
 
@@ -209,10 +214,31 @@
     <script src="js/common/auth.js"></script>
     <script src="js/admin/admin-dashboard.js"></script>
     <script>
-    // This script block is only for navigation and stat card click listener.
-    // All other functions (like viewRequestDetails, openStatusUpdateModal, deleteRequest, showError, showStatFloatCard, closeStatFloatCard, etc.)
-    // are defined and handled in js/admin/admin-dashboard.js.
-    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mainNav = document.getElementById('main-nav');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenuBtn.classList.toggle('active');
+        mainNav.querySelector('ul').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            mobileMenuBtn.classList.remove('active');
+            mainNav.querySelector('ul').classList.remove('active');
+        }
+    });
+
+    // Close mobile menu when clicking a nav link
+    mainNav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            mobileMenuBtn.classList.remove('active');
+            mainNav.querySelector('ul').classList.remove('active');
+        }
+    });
+
     fetch('/api/auth/status').then(res => res.json()).then(data => {
       let navHtml = '<ul>';
       navHtml += '<li><a href="index.html">Home</a></li>';
